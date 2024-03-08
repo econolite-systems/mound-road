@@ -1,0 +1,49 @@
+{
+  "name": "shared-react-pavement-condition",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/pavement-condition/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/react/pavement-condition",
+        "tsConfig": "libs/shared/react/pavement-condition/tsconfig.lib.json",
+        "project": "libs/shared/react/pavement-condition/package.json",
+        "entryFile": "libs/shared/react/pavement-condition/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/react/pavement-condition/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/pavement-condition/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/react/pavement-condition"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/react/pavement-condition/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

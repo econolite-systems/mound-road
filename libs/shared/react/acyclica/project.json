@@ -1,0 +1,29 @@
+{
+  "name": "shared-react-acyclica",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/acyclica/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/acyclica/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/react/acyclica"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/react/acyclica/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

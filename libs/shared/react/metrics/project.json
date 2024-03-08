@@ -1,0 +1,19 @@
+{
+  "name": "shared-react-metrics",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/metrics/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/weather-responsive/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    }
+  }
+}
+

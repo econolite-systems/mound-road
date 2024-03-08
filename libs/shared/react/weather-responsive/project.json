@@ -1,0 +1,29 @@
+{
+  "name": "shared-react-weather-responsive",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/weather-responsive/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/weather-responsive/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/react/weather-responsive"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/react/weather-responsive/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

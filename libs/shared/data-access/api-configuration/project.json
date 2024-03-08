@@ -1,0 +1,49 @@
+{
+  "name": "shared-data-access-api-configuration",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-access/api-configuration/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/data-access/api-configuration",
+        "tsConfig": "libs/shared/data-access/api-configuration/tsconfig.lib.json",
+        "project": "libs/shared/data-access/api-configuration/package.json",
+        "entryFile": "libs/shared/data-access/api-configuration/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/data-access/api-configuration/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/data-access/api-configuration/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/data-access/api-configuration"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/data-access/api-configuration/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

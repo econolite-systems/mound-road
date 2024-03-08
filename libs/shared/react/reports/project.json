@@ -1,0 +1,45 @@
+{
+  "name": "shared-react-reports",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/reports/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/react/reports",
+        "tsConfig": "libs/shared/react/reports/tsconfig.lib.json",
+        "project": "libs/shared/react/reports/package.json",
+        "entryFile": "libs/shared/react/reports/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/react/reports/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/react/reports/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/shared/react/reports"],
+      "options": {
+        "jestConfig": "libs/shared/react/reports/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

@@ -1,0 +1,27 @@
+{
+  "name": "shared-data-access-api-tim",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-access/api-tim/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/data-access/api-tim",
+        "main": "libs/shared/data-access/api-tim/src/index.ts",
+        "tsConfig": "libs/shared/data-access/api-tim/tsconfig.lib.json",
+        "assets": ["libs/shared/data-access/api-tim/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/data-access/api-tim/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
+

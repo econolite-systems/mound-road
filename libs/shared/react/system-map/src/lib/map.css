@@ -1,0 +1,190 @@
+body {
+  padding: 0;
+}
+
+.legend {
+  z-index: 400;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  left: 2.5%;
+}
+
+.leaflet-container {
+  height: 100%;
+  width: 100wh;
+}
+
+.leaflet-div-icon {
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #666;
+}
+
+.red {
+  color: red
+}
+
+.green {
+  color: green
+}
+
+.purple {
+  color: #4058CE;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.gray {
+  color: #797979
+}
+
+.signal-online {
+  color: green;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, rgb(4, 183, 13) 0, rgb(9, 64, 7) 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-offline {
+  color: grey;
+  height: 24px;
+  width: 24px;
+  background-color: grey;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-commfail {
+  color: #14008c;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #967fff 0, #14008c 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-standby {
+  color: #19191d;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #525252 0, #19191d 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-flash {
+  color: #8d0d00;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #fe1e00 0, #8d0d00 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+.signal-preempt {
+  color: #f3869a;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #fedfdf 0, #f3869a 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-transition {
+  color: #dba61e;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #fbf700 0, #dba61e 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-coordination {
+  color: #25a659;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #89fb95 0, #25a659 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.signal-free {
+  color: #c0c0c0;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #ffffff 0, #c0c0c0 100%);
+  border-radius: 50%;
+  opacity: 1;
+}
+
+.signal-automaticflash {
+  color: #f66301;
+  height: 24px;
+  width: 24px;
+  background: radial-gradient(circle at center, #fb8b01 0, #f66301 100%);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+
+  70% {
+    opacity: 0.0;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
+
+.signal-priority {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 20px 0 rgb(107, 7, 179), 0 6px 20px 0 rgb(107, 7, 179);
+}
+
+/*this seems to be getting set dynamically by something else and then becomes too small for our content*/
+.leaflet-popup-content {
+  width: unset !important
+}
+
+.slowdown-green {
+  color: green;
+  height: 24px;
+  width: 24px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.slowdown-red {
+  color: red;
+  height: 24px;
+  width: 24px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.slowdown-yellow {
+  color: orange;
+  height: 24px;
+  width: 24px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

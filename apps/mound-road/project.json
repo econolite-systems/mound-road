@@ -1,0 +1,78 @@
+{
+  "name": "mound-road",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mound-road/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/mound-road",
+        "index": "apps/mound-road/src/index.html",
+        "baseHref": "/",
+        "main": "apps/mound-road/src/main.tsx",
+        "polyfills": "apps/mound-road/src/polyfills.ts",
+        "tsConfig": "apps/mound-road/tsconfig.app.json",
+        "assets": [
+          "apps/mound-road/src/marker-icon-2x.png",
+          "apps/mound-road/src/marker-icon.png",
+          "apps/mound-road/src/marker-shadow.png",
+          "apps/mound-road/src/favicon.ico",
+          "apps/mound-road/src/assets",
+          "apps/mound-road/src/config"
+        ],
+        "styles": ["apps/mound-road/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "apps/mound-road/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/mound-road/src/environments/environment.ts",
+              "with": "apps/mound-road/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/webpack:dev-server",
+      "options": {
+        "buildTarget": "mound-road:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "mound-road:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/mound-road/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/mound-road"],
+      "options": {
+        "jestConfig": "apps/mound-road/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
+

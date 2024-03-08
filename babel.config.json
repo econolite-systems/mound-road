@@ -1,0 +1,8 @@
+{
+  "babelrcRoots": ["*"],
+  "plugins": [
+    ["@babel/plugin-transform-flow-strip-types"],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ]
+}
+

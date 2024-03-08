@@ -1,0 +1,29 @@
+{
+  "name": "mound-road-feature-vehicle-priority",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/feature/vehicle-priority/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mound-road/feature/vehicle-priority/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/mound-road/feature/vehicle-priority"
+      ],
+      "options": {
+        "jestConfig": "libs/mound-road/feature/vehicle-priority/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

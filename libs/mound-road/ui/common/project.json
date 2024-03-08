@@ -1,0 +1,25 @@
+{
+  "name": "mound-road-ui-common",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/ui/common/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/mound-road/ui/common/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/mound-road/ui/common"],
+      "options": {
+        "jestConfig": "libs/mound-road/ui/common/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

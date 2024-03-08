@@ -1,0 +1,3877 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api.Reports",
+    "version": "1.0"
+  },
+  "paths": {
+    "/audit-report/find": {
+      "get": {
+        "tags": [
+          "AuditReport"
+        ],
+        "summary": "Find audit report entries",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "eventTypes",
+            "in": "query",
+            "description": "Optional event types",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "usernames",
+            "in": "query",
+            "description": "Optional usernames",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "details",
+            "in": "query",
+            "description": "Optional details",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of audit report entries",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditReportDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditReportDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AuditReportDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/audit-report/getAuditEventTypes": {
+      "get": {
+        "tags": [
+          "AuditReport"
+        ],
+        "summary": "Get audit event types",
+        "responses": {
+          "200": {
+            "description": "Returns a set of supported audit event types",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/AuditEventTypeModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/AuditEventTypeModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/AuditEventTypeModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/find": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Finds connected vehicle messages matching the given query parameters",
+        "description": "The start date is mandatory, but the end date is optional. If no end date is given, all log entries with a \r\ntimestamp from the start date up to the latest will be returned. If an end date is provided, only entries\r\nwithin the date range will be returned.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of connected vehicle log messages matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/getTotalsByMessageType": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Gets the connected vehicle log data totals by message type",
+        "responses": {
+          "200": {
+            "description": "Returns a list of connected vehicle log entries grouped by the type",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageTypeCountAndSize"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageTypeCountAndSize"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageTypeCountAndSize"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/getTotalsByRepositoryType": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Gets the connected vehicle log data totals by repository type",
+        "responses": {
+          "200": {
+            "description": "Returns a list of connected vehicle log entries grouped by the type",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleRepositoryTypeCountAndSize"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleRepositoryTypeCountAndSize"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleRepositoryTypeCountAndSize"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/getLastHourTotalsByMessageType": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Gets the last 60 mins of connected vehicle log data totals by message type",
+        "responses": {
+          "200": {
+            "description": "Returns a list of connected vehicle log entries totals grouped by the type",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageCount"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageCount"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleMessageCount"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/getTotalMessageCount": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Gets the total count of the connected vehicle log messages",
+        "responses": {
+          "200": {
+            "description": "Returns a count of all the messages in the connected vehicle log",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/connected-vehicle-status/getIntersectionTotalsByMessageType": {
+      "get": {
+        "tags": [
+          "ConnectedVehicleStatus"
+        ],
+        "summary": "Gets the intersection totals by message type and intersection",
+        "responses": {
+          "200": {
+            "description": "Returns a list of connected vehicle log intersection message totals by the type",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleIntersectionTypeCountAndSize"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleIntersectionTypeCountAndSize"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ConnectedVehicleIntersectionTypeCountAndSize"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ess-status/latest": {
+      "get": {
+        "tags": [
+          "EssStatus"
+        ],
+        "summary": "Returns the latest environmental sensor status for the given device ID",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "query",
+            "description": "A device ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns the latest environmental status entry for the given device ID",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EssStatusDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EssStatusDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EssStatusDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Returns nothing if no status entries for the device ID exist",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ess-status/latest/all": {
+      "get": {
+        "tags": [
+          "EssStatus"
+        ],
+        "summary": "Returns the latest environmental sensor status entries for all devices",
+        "responses": {
+          "200": {
+            "description": "Returns a list of the latest environmental sensor statuses for all devices",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ess-status/find": {
+      "get": {
+        "tags": [
+          "EssStatus"
+        ],
+        "summary": "Finds environmental sensor statuses matching the given query parameters",
+        "description": "The start date is mandatory, but the end date is optional. If no end date is given, all status entries with a \r\ntimestamp from the start date up to the latest will be returned. If an end date is provided, only status entries\r\nwithin the date range will be returned.\r\n\r\nIf no device ID parameters are given, then the query will *not* filter on any device IDs, so statuses for\r\nany device will be returned. The device ID parameter may be provided multiple times to filter on multiple\r\ndevice IDs. If any device IDs are given, only statuses for the given device IDs will be returned.",
+        "parameters": [
+          {
+            "name": "deviceId",
+            "in": "query",
+            "description": "Optional device ID to filter on",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of ESS status entries matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EssStatusDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/event-logger/find": {
+      "get": {
+        "tags": [
+          "EventLogger"
+        ],
+        "parameters": [
+          {
+            "name": "beginDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/event-logger/errors": {
+      "get": {
+        "tags": [
+          "EventLogger"
+        ],
+        "parameters": [
+          {
+            "name": "beginDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EventLogDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/jasper-report/getJasperReports": {
+      "get": {
+        "tags": [
+          "JasperReport"
+        ],
+        "summary": "Get Jasper reports",
+        "responses": {
+          "200": {
+            "description": "Returns a list of Jasper reports",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JasperReportModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JasperReportModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/JasperReportModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system-metrics": {
+      "get": {
+        "tags": [
+          "Metrics"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricSummaryDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricSummaryDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricSummaryDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/system-metrics/remove/{source}": {
+      "post": {
+        "tags": [
+          "Metrics"
+        ],
+        "parameters": [
+          {
+            "name": "source",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/pavement-condition-status/active": {
+      "get": {
+        "tags": [
+          "PavementConditionStatus"
+        ],
+        "summary": "Finds the unique active pavement condition statuses.  A status is considered active if the date is within the active number of days configured in the pavement condition configs.\r\nIf no config has been defined then it will find statuses from the last 7 days.\r\n If multiple statuses has been reported on the same lat/long it will be grouped into a single record.",
+        "responses": {
+          "200": {
+            "description": "Returns a list of pavement condition status entries matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pavement-condition-status/find": {
+      "get": {
+        "tags": [
+          "PavementConditionStatus"
+        ],
+        "summary": "Finds pavement condition sensor statuses matching the given query parameters",
+        "description": "The start date is mandatory, but the end date is optional. If no end date is given, all status entries with a \r\ntimestamp from the start date up to the latest will be returned. If an end date is provided, only status entries\r\nwithin the date range will be returned.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of pavement condition status entries matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PavementConditionStatusMessageDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rsu-status/find": {
+      "get": {
+        "tags": [
+          "RsuStatus"
+        ],
+        "parameters": [
+          {
+            "name": "deviceIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RsuStatusDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RsuStatusDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RsuStatusDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim-status/find-active": {
+      "get": {
+        "tags": [
+          "TimStatus"
+        ],
+        "summary": "Returns active TIM entries",
+        "responses": {
+          "200": {
+            "description": "Returns a list of active TIM entries",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim-status/find": {
+      "get": {
+        "tags": [
+          "TimStatus"
+        ],
+        "summary": "Returns historical TIM entries with a creation date within the given time range",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of TIM entries matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocumentDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocumentDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocumentDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Find locked users",
+        "parameters": [
+          {
+            "name": "usernames",
+            "in": "query",
+            "description": "Optional usernames",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "name": "locked",
+            "in": "query",
+            "description": "Optional filter for locked or unlocked users",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of locked users",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-config/{corridorId}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-config/{corridorId}/{configId}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "configId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-config": {
+      "put": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfiguration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-config/{configId}": {
+      "delete": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "parameters": [
+          {
+            "name": "configId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-config/order": {
+      "put": {
+        "tags": [
+          "WeatherResponsiveConfiguration"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfigurationOrder"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfigurationOrder"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveConfigurationOrder"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmResultsSummaryModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmResultsSummaryModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmResultsSummaryModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive/{algorithmId}/{date}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "parameters": [
+          {
+            "name": "algorithmId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "severity",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 7
+            }
+          },
+          {
+            "name": "pageIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlgorithmResultsModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlgorithmResultsModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlgorithmResultsModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive/configurations/{corridorId}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive/algorithm-for-configuration/{configurationId}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive/start/{configurationId}": {
+      "post": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-edaptive/stop/{configurationId}": {
+      "post": {
+        "tags": [
+          "WeatherResponsiveEdaptive"
+        ],
+        "parameters": [
+          {
+            "name": "configurationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-global-config": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveGlobalConfig"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "WeatherResponsiveGlobalConfig"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WeatherResponsiveGlobalConfig"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "WeatherResponsiveGlobalConfig"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/WeatherResponsiveGlobalConfig"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-speed": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveSpeed"
+        ],
+        "operationId": "GetAll",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-speed/{corridorId}": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveSpeed"
+        ],
+        "operationId": "GetOne",
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CorridorSpeedOverride"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "WeatherResponsiveSpeed"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "speedAdjustment",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "speedType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/CorridorSpeedOverrideType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "WeatherResponsiveSpeed"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/weather-responsive-status/find": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveStatus"
+        ],
+        "parameters": [
+          {
+            "name": "corridorIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-status/latest/all": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherResponsiveResultModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-status/fusion": {
+      "get": {
+        "tags": [
+          "WeatherResponsiveStatus"
+        ],
+        "parameters": [
+          {
+            "name": "corridorIds",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherFusionResultModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherFusionResultModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherFusionResultModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather-responsive-timing-plans/set-timing-plan/{corridorId}": {
+      "post": {
+        "tags": [
+          "WeatherResponsiveTimingPlan"
+        ],
+        "parameters": [
+          {
+            "name": "corridorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "timingPlan",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "logicFlag",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "logicFlagState",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/wrong-way-driver-status/find": {
+      "get": {
+        "tags": [
+          "WrongWayDriverStatus"
+        ],
+        "summary": "Finds wrong way driver incidents matching the given query parameters",
+        "description": "The start date is mandatory, but the end date is optional. If no end date is given, all incident entries with a \r\ntimestamp from the start date up to the latest will be returned. If an end date is provided, only incident entries\r\nwithin the date range will be returned.",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "description": "Required start date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "description": "Optional end date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns a list of wrong way driver incidents matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriversStatusDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriversStatusDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriversStatusDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wrong-way-driver-status/active": {
+      "get": {
+        "tags": [
+          "WrongWayDriverStatus"
+        ],
+        "summary": "Finds the unique active wrong way driver statuses.  A status is considered active if the date is within the active number of days configured in the wrong way driver configs.\r\nIf no config has been defined then it will find statuses from the last 7 days.\r\n If multiple statuses has been reported on the same lat/long it will be grouped into a single record.",
+        "responses": {
+          "200": {
+            "description": "Returns a list of wrong way driver status entries matching the given query parameters",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriverStatusMessageDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriverStatusMessageDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WrongWayDriverStatusMessageDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "enum": [
+          "Create",
+          "Update",
+          "Delete"
+        ],
+        "type": "string"
+      },
+      "AlgorithmConfigurationSlimModel": {
+        "type": "object",
+        "properties": {
+          "algorithmId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "mode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "optimizeOffset": {
+            "type": "boolean"
+          },
+          "optimizeCycleLength": {
+            "type": "boolean"
+          },
+          "optimizeSplits": {
+            "type": "boolean"
+          },
+          "optimizePhaseSequence": {
+            "type": "boolean"
+          },
+          "dataAffinity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cyclesToOptimize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleAndOffsetPeriod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sideStreetMaxSplitIncrease": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sideStreetMaxSplitDecrease": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coordPhaseMaxSplitIncrease": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coordPhaseMaxSplitDecrease": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minimumSplitBufferSeconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthLowerVolumeCapacityThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthUpperVolumeCapacityThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minCycleLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxCycleLength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthDecreaseDelta": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthIncreaseDelta": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmCorridorModel": {
+        "type": "object",
+        "properties": {
+          "corridorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "corridorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isSelected": {
+            "type": "boolean"
+          },
+          "splitLockGroup": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "signals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmSignalModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmPatternRingModel": {
+        "type": "object",
+        "properties": {
+          "ring": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phase": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "phaseSequence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isCoordinated": {
+            "type": "boolean"
+          },
+          "split": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "yellow": {
+            "type": "number",
+            "format": "double"
+          },
+          "redClear": {
+            "type": "number",
+            "format": "double"
+          },
+          "walk": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pedClear": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minGreen": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxGreen": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "barrierGroup": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmResultHeaderModel": {
+        "type": "object",
+        "properties": {
+          "analysisStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "analysisEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "basePattern": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "messageSeverity": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmResultIntersectionModel": {
+        "type": "object",
+        "properties": {
+          "signalId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "pattern": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthBefore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cycleLengthPredicted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offsetBefore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offsetPredicted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offsetRefMode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "upstreamVolumeCapacityRatio": {
+            "type": "number",
+            "format": "double"
+          },
+          "downstreamVolumeCapacityRatio": {
+            "type": "number",
+            "format": "double"
+          },
+          "ringsBefore": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmPatternRingModel"
+            },
+            "nullable": true
+          },
+          "ringsAfter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmPatternRingModel"
+            },
+            "nullable": true
+          },
+          "commandedPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "corridorOverride": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmResultModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "algorithmConfigurationId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "success": {
+            "type": "boolean"
+          },
+          "rollback": {
+            "type": "boolean"
+          },
+          "mode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "messageSeverity": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePattern": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "averageVolumeCapacityRatio": {
+            "type": "number",
+            "format": "double"
+          },
+          "intersections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmResultIntersectionModel"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmResultsModel": {
+        "type": "object",
+        "properties": {
+          "algorithmName": {
+            "type": "string",
+            "nullable": true
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/AlgorithmConfigurationSlimModel"
+          },
+          "corridors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmCorridorModel"
+            },
+            "nullable": true
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AlgorithmResultModel"
+            },
+            "nullable": true
+          },
+          "header": {
+            "$ref": "#/components/schemas/AlgorithmResultHeaderModel"
+          },
+          "corridorSpeedOverrides": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CorridorSpeedOverride"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmResultsSummaryModel": {
+        "type": "object",
+        "properties": {
+          "algorithmId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "algorithmName": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastRunTime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "lastResult": {
+            "type": "string",
+            "nullable": true
+          },
+          "isScheduled": {
+            "type": "boolean"
+          },
+          "isEnabled": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AlgorithmSignalModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "corridorOverride": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "signalLocatedAtEnd": {
+            "type": "boolean"
+          },
+          "overrideType": {
+            "$ref": "#/components/schemas/CorridorOverrideType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuditEventTypeModel": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "event": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AuditReportDto": {
+        "type": "object",
+        "properties": {
+          "eventType": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Category": {
+        "enum": [
+          "CategoryUnknown",
+          "Server",
+          "Operational",
+          "User"
+        ],
+        "type": "string"
+      },
+      "ConnectedVehicleIntersectionTypeCountAndSize": {
+        "type": "object",
+        "properties": {
+          "messageCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "byteSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ConnectedVehicleMessageTypeEnum"
+          },
+          "signalId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "signalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "intersectionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "intersectionRegion": {
+            "type": "string",
+            "nullable": true
+          },
+          "intersectionName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleMessageCount": {
+        "type": "object",
+        "properties": {
+          "messageCount": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleMessageDocument": {
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "metaData": {
+            "$ref": "#/components/schemas/ConnectedVehicleMetaField"
+          },
+          "logEntry": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleMessageTypeCountAndSize": {
+        "type": "object",
+        "properties": {
+          "messageCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "byteSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ConnectedVehicleMessageTypeEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleMessageTypeEnum": {
+        "enum": [
+          "SPAT",
+          "BSM",
+          "SRM",
+          "TIM"
+        ],
+        "type": "string"
+      },
+      "ConnectedVehicleMetaField": {
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ConnectedVehicleMessageTypeEnum"
+          },
+          "logEntryByteSize": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleRepositoryTypeCountAndSize": {
+        "type": "object",
+        "properties": {
+          "messageCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "byteSize": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "size": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/ConnectedVehicleRepositoryTypeEnum"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConnectedVehicleRepositoryTypeEnum": {
+        "enum": [
+          "Working",
+          "Archive"
+        ],
+        "type": "string"
+      },
+      "CorridorOverrideType": {
+        "enum": [
+          "Schedule",
+          "VolumeCapacity",
+          "MachineLearning"
+        ],
+        "type": "string"
+      },
+      "CorridorSpeedOverride": {
+        "type": "object",
+        "properties": {
+          "corridorId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "speedAdjustment": {
+            "type": "number",
+            "format": "double"
+          },
+          "speedOverrideType": {
+            "$ref": "#/components/schemas/CorridorSpeedOverrideType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CorridorSpeedOverrideType": {
+        "enum": [
+          "ExactDelta",
+          "PercentDelta",
+          "Exact"
+        ],
+        "type": "string"
+      },
+      "EssCloudSituationEnum": {
+        "enum": [
+          "Overcast",
+          "Cloudy",
+          "PartlyCloudy",
+          "MostlyClear",
+          "Clear"
+        ],
+        "type": "string"
+      },
+      "EssPrecipSituationEnum": {
+        "enum": [
+          "Other",
+          "Unknown",
+          "NoPrecipitation",
+          "UnidentifiedSlight",
+          "UnidentifiedModerate",
+          "UnidentifiedHeavy",
+          "SnowSlight",
+          "SnowModerate",
+          "SnowHeavy",
+          "RainSlight",
+          "RainModerate",
+          "RainHeavy",
+          "FrozenPrecipitationSlight",
+          "FrozenPrecipitationModerate",
+          "FrozenPrecipitationHeavy"
+        ],
+        "type": "string"
+      },
+      "EssPrecipYesNoEnum": {
+        "enum": [
+          "Precip",
+          "NoPrecip",
+          "Error"
+        ],
+        "type": "string"
+      },
+      "EssStatusDto": {
+        "type": "object",
+        "properties": {
+          "deviceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "wetBulbTemp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dewPointTemp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxTemp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minTemp": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "adjacentSnowDepth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roadwaySnowDepth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roadwaySnowPackDepth": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precipYesNo": {
+            "$ref": "#/components/schemas/EssPrecipYesNoEnum"
+          },
+          "precipRate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "snowfallAccumRate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precipSituation": {
+            "$ref": "#/components/schemas/EssPrecipSituationEnum"
+          },
+          "iceThickness": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precipitationStartTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "precipitationEndTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "visibility": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "visibilitySituation": {
+            "$ref": "#/components/schemas/EssVisibilitySituationEnum"
+          },
+          "totalSun": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instantaneousTerrestrialRadiation": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "instantaneousSolarRadiation": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalRadiation": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalRadiationPeriod": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cloudSituation": {
+            "$ref": "#/components/schemas/EssCloudSituationEnum"
+          },
+          "relativeHumidity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "atmosphericPressure": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EssVisibilitySituationEnum": {
+        "enum": [
+          "Other",
+          "Unknown",
+          "Clear",
+          "FogNotPatchy",
+          "PatchyFog",
+          "BlowingSnow",
+          "Smoke",
+          "SeaSpray",
+          "VehicleSpray",
+          "BlowingDustOrSand",
+          "SunGlare",
+          "SwarmsOfInsects"
+        ],
+        "type": "string"
+      },
+      "EventLevel": {
+        "enum": [
+          "EventLevelUnknown",
+          "Debug",
+          "Information",
+          "Warning",
+          "Error",
+          "Critical"
+        ],
+        "type": "string"
+      },
+      "EventLogDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "name": {
+            "$ref": "#/components/schemas/LogName"
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "level": {
+            "$ref": "#/components/schemas/EventLevel"
+          },
+          "category": {
+            "$ref": "#/components/schemas/Category"
+          },
+          "computer": {
+            "type": "string",
+            "nullable": true
+          },
+          "details": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ItisCode": {
+        "enum": [
+          "None",
+          "StoppedTraffic",
+          "StopAndGoTraffic",
+          "SlowTraffic",
+          "LongQueues",
+          "SpeedLimit",
+          "Bumps",
+          "Pothole",
+          "VehicleTravelingWrongWay",
+          "SevereWeather",
+          "Blizzard",
+          "HeavySnow",
+          "Snow",
+          "WinterStorm",
+          "IceStorm",
+          "RainAndSnowMixed",
+          "DamagingHail",
+          "Thunderstorms",
+          "HeavyRain",
+          "Tornado",
+          "StrongWinds",
+          "StrongWindsHaveEased",
+          "Fog",
+          "VisibilityReduced",
+          "WhiteOut",
+          "VisibilityImproved",
+          "DangerOfHydroplaning",
+          "Ice",
+          "BlackIce",
+          "FreezingRain",
+          "SnowOnRoadway",
+          "PavementConditionsCleared",
+          "Watch",
+          "Warning",
+          "Alert",
+          "WarningCanceled",
+          "WatchCanceled",
+          "AlertCanceled"
+        ],
+        "type": "string"
+      },
+      "JasperReportModel": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          },
+          "uri": {
+            "type": "string",
+            "description": "",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "A Jasper server resource who's type is \"reportUnit\".\r\n https://community.jaspersoft.com/documentation/tibco-jasperreports-server-rest-api-reference/v64/working-resource"
+      },
+      "LogName": {
+        "enum": [
+          "LogNameUnknown",
+          "SystemEvent",
+          "Audit"
+        ],
+        "type": "string"
+      },
+      "MessageType": {
+        "enum": [
+          "Information",
+          "Alert",
+          "Warning",
+          "Watch"
+        ],
+        "type": "string"
+      },
+      "MetricDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "units": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MetricSummaryDto": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "services": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "serviceMetrics": {
+            "type": "number",
+            "format": "double"
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceMetricDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PavementConditionStatusMessageDocument": {
+        "type": "object",
+        "properties": {
+          "statusId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/PavementConditionStatusSeverity"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PavementConditionStatusSeverity": {
+        "enum": [
+          "Low",
+          "Medium",
+          "High"
+        ],
+        "type": "string"
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": {}
+      },
+      "RsuStatusDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deviceId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isConnected": {
+            "type": "boolean"
+          },
+          "isConfigured": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ServiceMetricDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "logged": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tenantId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "computer": {
+            "type": "string",
+            "nullable": true
+          },
+          "instanceHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "metrics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetricDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "batchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "intersectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rsuId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TimState"
+          },
+          "source": {
+            "$ref": "#/components/schemas/TimSource"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isAlternating": {
+            "type": "boolean"
+          },
+          "deliveryStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliveryDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "enable": {
+            "type": "boolean"
+          },
+          "itisCode": {
+            "$ref": "#/components/schemas/ItisCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/MessageType"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "cancelOnDuration": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimDocumentDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "batchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TimState"
+          },
+          "source": {
+            "$ref": "#/components/schemas/TimSource"
+          },
+          "signalId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliveryStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliveryEnd": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contents": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimSource": {
+        "enum": [
+          "LogicStatement",
+          "ManualEntry"
+        ],
+        "type": "string"
+      },
+      "TimState": {
+        "enum": [
+          "Pending",
+          "Canceling",
+          "Canceled",
+          "Running",
+          "Stopped",
+          "Error"
+        ],
+        "type": "string"
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimingPlanLogicFlagState": {
+        "type": "object",
+        "properties": {
+          "timingPlan": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "logicFlag": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "logicFlagState": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdTimestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "nullable": true
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherFusionResultModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corridorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corridorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "confidence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precipitation": {
+            "type": "boolean"
+          },
+          "temperature": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roadCondition": {
+            "$ref": "#/components/schemas/enumRoadCondition"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherResponsiveConfiguration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corridorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "isEnabled": {
+            "type": "boolean"
+          },
+          "hasPrecipitation": {
+            "type": "boolean"
+          },
+          "temperatureThreshold": {
+            "type": "number",
+            "format": "double"
+          },
+          "roadConditions": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "minimumConfidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "enableEdaptive": {
+            "type": "boolean"
+          },
+          "edaptiveConfigurationId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "adjustSpeed": {
+            "type": "boolean"
+          },
+          "speedAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "speedOverrideType": {
+            "$ref": "#/components/schemas/CorridorSpeedOverrideType"
+          },
+          "adjustTimingPlan": {
+            "type": "boolean"
+          },
+          "timingPlan": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherResponsiveConfigurationOrder": {
+        "type": "object",
+        "properties": {
+          "corridorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "configurationOrder": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherResponsiveGlobalConfig": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "timingPlanLogicFlagStates": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimingPlanLogicFlagState"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WeatherResponsiveResultModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corridorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "corridorName": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ranEdaptive": {
+            "type": "boolean"
+          },
+          "changedSpeed": {
+            "type": "boolean"
+          },
+          "changedTimingPlan": {
+            "type": "boolean"
+          },
+          "edaptiveConfigurationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "speedAdjustment": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "speedOverrideType": {
+            "$ref": "#/components/schemas/CorridorSpeedOverrideType"
+          },
+          "timingPlan": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "errors": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "precipitation": {
+            "type": "boolean"
+          },
+          "temperature": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roadCondition": {
+            "$ref": "#/components/schemas/enumRoadCondition"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WrongWayDriverStatusMessageDocument": {
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "WrongWayDriversStatusDto": {
+        "type": "object",
+        "properties": {
+          "timeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "location": {
+            "type": "string",
+            "nullable": true
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "enumRoadCondition": {
+        "enum": [
+          "Unknown",
+          "Dry",
+          "Damp",
+          "ChemicallyDamp",
+          "Wet",
+          "ChemicallyWet",
+          "CriticallyWet",
+          "FrostOrRime",
+          "Snow",
+          "SnowOrIce",
+          "Ice",
+          "Error"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

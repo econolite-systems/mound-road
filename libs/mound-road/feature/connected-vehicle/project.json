@@ -1,0 +1,29 @@
+{
+  "name": "mound-road-feature-connected-vehicle",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/feature/connected-vehicle/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mound-road/feature/connected-vehicle/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/mound-road/feature/connected-vehicle"
+      ],
+      "options": {
+        "jestConfig": "libs/mound-road/feature/connected-vehicle/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

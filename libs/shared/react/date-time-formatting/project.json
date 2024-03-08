@@ -1,0 +1,49 @@
+{
+  "name": "shared-react-date-time-formatting",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/date-time-formatting/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/react/date-time-formatting",
+        "tsConfig": "libs/shared/react/date-time-formatting/tsconfig.lib.json",
+        "project": "libs/shared/react/date-time-formatting/package.json",
+        "entryFile": "libs/shared/react/date-time-formatting/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/react/date-time-formatting/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/date-time-formatting/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/react/date-time-formatting"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/react/date-time-formatting/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

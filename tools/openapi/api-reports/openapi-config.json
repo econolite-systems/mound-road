@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-reports/src/lib/emptyApiReports.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-reports/src/lib/api-reports.ts",
+  "exportName": "apiReports",
+  "hooks": true
+}
+

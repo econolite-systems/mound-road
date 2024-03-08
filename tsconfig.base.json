@@ -1,0 +1,133 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@econolite/auth-state": [
+        "libs/shared/data-access/auth-state/src/index.ts"
+      ],
+      "@econolite/config/models": ["libs/shared/config-models/src/index.ts"],
+      "@econolite/data-grid": ["libs/shared/react/data-grid/src/index.ts"],
+      "@econolite/dialogs": ["libs/shared/react/dialogs/src/index.ts"],
+      "@econolite/entities-state": [
+        "libs/shared/data-access/entities-state/src/index.ts"
+      ],
+      "@econolite/modal": ["libs/shared/react/modal/src/index.ts"],
+      "@econolite/mound-road/data-access/global-state": [
+        "libs/mound-road/data-access/global-state/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/connected-vehicle": [
+        "libs/mound-road/feature/connected-vehicle/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/main": [
+        "libs/mound-road/feature/main/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/pavement-condition": [
+        "libs/mound-road/feature/pavement-condition/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/reports": [
+        "libs/mound-road/feature/reports/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/settings": [
+        "libs/mound-road/feature/settings/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/system-map": [
+        "libs/mound-road/feature/system-map/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/tim": [
+        "libs/mound-road/feature/tim/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/vehicle-priority": [
+        "libs/mound-road/feature/vehicle-priority/src/index.ts"
+      ],
+      "@econolite/mound-road/feature/weather-responsive": [
+        "libs/mound-road/feature/weather-responsive/src/index.ts"
+      ],
+      "@econolite/mound-road/ui/common": [
+        "libs/mound-road/ui/common/src/index.ts"
+      ],
+      "@econolite/react/forms": ["libs/shared/react/forms/src/index.ts"],
+      "@econolite/shared-react-auth": ["libs/shared/react/auth/src/index.ts"],
+      "@econolite/shared-react-date-time-formatting": [
+        "libs/shared/react/date-time-formatting/src/index.ts"
+      ],
+      "@econolite/shared-react-string-formatting": [
+        "libs/shared/react/string-formatting/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-configuration": [
+        "libs/shared/data-access/api-configuration/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-reports": [
+        "libs/shared/data-access/api-reports/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-signal-status": [
+        "libs/shared/data-access/api-signal-status/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-speed-status": [
+        "libs/shared/data-access/api-speed-status/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-system-health": [
+        "libs/shared/data-access/api-system-health/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-tim": [
+        "libs/shared/data-access/api-tim/src/index.ts"
+      ],
+      "@econolite/shared/data-access/api-vehicle-priority": [
+        "libs/shared/data-access/api-vehicle-priority/src/index.ts"
+      ],
+      "@econolite/shared/data-access/map-state": [
+        "libs/shared/data-access/map-state/src/index.ts"
+      ],
+      "@econolite/shared/react/acyclica": [
+        "libs/shared/react/acyclica/src/index.ts"
+      ],
+      "@econolite/shared/react/entities": [
+        "libs/shared/react/entities/src/index.ts"
+      ],
+      "@econolite/shared/react/metrics": [
+        "libs/shared/react/metrics/src/index.ts"
+      ],
+      "@econolite/shared/react/pavement-condition": [
+        "libs/shared/react/pavement-condition/src/index.ts"
+      ],
+      "@econolite/shared/react/report-tables": [
+        "libs/shared/react/report-tables/src/index.ts"
+      ],
+      "@econolite/shared/react/reports": [
+        "libs/shared/react/reports/src/index.ts"
+      ],
+      "@econolite/shared/react/system-monitoring": [
+        "libs/shared/react/system-monitoring/src/index.ts"
+      ],
+      "@econolite/shared/react/tabs": ["libs/shared/react/tabs/src/index.ts"],
+      "@econolite/shared/react/traveler-messages": [
+        "libs/shared/react/traveler-messages/src/index.ts"
+      ],
+      "@econolite/shared/react/twilio": [
+        "libs/shared/react/twilio/src/index.ts"
+      ],
+      "@econolite/shared/react/weather-responsive": [
+        "libs/shared/react/weather-responsive/src/index.ts"
+      ],
+      "@econolite/signalr": ["libs/shared/react/signalr/src/index.ts"],
+      "@econolite/system-map": ["libs/shared/react/system-map/src/index.ts"],
+      "@econolite/vehicle-priority": [
+        "libs/shared/react/vehicle-priority/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
+

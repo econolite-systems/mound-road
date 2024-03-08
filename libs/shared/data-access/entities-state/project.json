@@ -1,0 +1,37 @@
+{
+  "name": "shared-data-access-entities-state",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-access/entities-state/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/data-access/entities-state",
+        "main": "libs/shared/data-access/entities-state/src/index.ts",
+        "tsConfig": "libs/shared/data-access/entities-state/tsconfig.lib.json",
+        "assets": ["libs/shared/data-access/entities-state/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/data-access/entities-state/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/data-access/entities-state"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/data-access/entities-state/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
+

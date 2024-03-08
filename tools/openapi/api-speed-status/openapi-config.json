@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-speed-status/src/lib/emptyApiSpeedStatus.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-speed-status/src/lib/api-speed-status.ts",
+  "exportName": "apiSpeedStatus",
+  "hooks": true
+}
+

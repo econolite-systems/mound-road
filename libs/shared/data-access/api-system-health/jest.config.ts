@@ -1,0 +1,13 @@
+// SPDX-License-Identifier: MIT
+// Copyright: 2023 Econolite Systems, Inc.
+/* eslint-disable */
+export default {
+  displayName: 'shared-data-access-api-system-health',
+  preset: '../../../../jest.preset.js',
+  transform: {
+    '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory:
+    '../../../../coverage/libs/shared/data-access/api-system-health',
+};

@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-vehicle-priority/src/lib/emptyApiVehiclePriority.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-vehicle-priority/src/lib/api-vehicle-priority.ts",
+  "exportName": "apiVehiclePriority",
+  "hooks": true
+}
+

@@ -1,0 +1,506 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api.Signals",
+    "version": "1.0"
+  },
+  "paths": {
+    "/signal-status/get": {
+      "get": {
+        "tags": [
+          "SignalStatus"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignalStatusModel"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignalStatusModel"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignalStatusModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signal-status/all": {
+      "get": {
+        "tags": [
+          "SignalStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignalStatusModel"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignalStatusModel"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SignalStatusModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/signal-status/point": {
+      "get": {
+        "tags": [
+          "SignalStatus"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapSignalState"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapSignalState"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapSignalState"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CommStatus": {
+        "enum": [
+          "Unknown",
+          "Offline",
+          "Standby",
+          "Bad",
+          "BadContent",
+          "Marginal",
+          "Good"
+        ],
+        "type": "string"
+      },
+      "CoordState": {
+        "enum": [
+          "Unknown",
+          "InSync",
+          "Transition",
+          "Flash",
+          "Free"
+        ],
+        "type": "string"
+      },
+      "ExtPedState": {
+        "enum": [
+          "CommFail",
+          "Off",
+          "Walk",
+          "FDW",
+          "DW",
+          "Dark"
+        ],
+        "type": "string"
+      },
+      "ExtPhaseState": {
+        "enum": [
+          "CommFail",
+          "Off",
+          "Green",
+          "Yellow",
+          "Red",
+          "Orange"
+        ],
+        "type": "string"
+      },
+      "ExtSignalState": {
+        "enum": [
+          "Offline",
+          "CommFail",
+          "Standby",
+          "Flash",
+          "Preempt",
+          "Transition",
+          "Coordinated",
+          "Free",
+          "AutomaticFlash"
+        ],
+        "type": "string"
+      },
+      "LocalFreeStatus": {
+        "enum": [
+          "None",
+          "Other",
+          "NotFree",
+          "CommandFree",
+          "TransitionFree",
+          "InputFree",
+          "CoordFree",
+          "BadPlan",
+          "BadCycleTime",
+          "SplitOverrun",
+          "InvalidOffset",
+          "Failed"
+        ],
+        "type": "string"
+      },
+      "MapSignalState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "state": {
+            "$ref": "#/components/schemas/SignalState"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "signalStatusSource": {
+            "$ref": "#/components/schemas/SignalStatusSource"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OverlapStatusModel": {
+        "type": "object",
+        "properties": {
+          "overlap": {
+            "type": "string",
+            "nullable": true
+          },
+          "extendedPhaseState": {
+            "$ref": "#/components/schemas/ExtPhaseState"
+          },
+          "extendedPedState": {
+            "$ref": "#/components/schemas/ExtPedState"
+          },
+          "isOverlapFlash": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PhaseStatusModel": {
+        "type": "object",
+        "properties": {
+          "phase": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "extendedPhaseState": {
+            "$ref": "#/components/schemas/ExtPhaseState"
+          },
+          "extendedPedState": {
+            "$ref": "#/components/schemas/ExtPedState"
+          },
+          "isNextPhase": {
+            "type": "boolean"
+          },
+          "isVehCall": {
+            "type": "boolean"
+          },
+          "isPedCall": {
+            "type": "boolean"
+          },
+          "isPhaseFlash": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Preempt": {
+        "type": "object",
+        "properties": {
+          "preemptType": {
+            "$ref": "#/components/schemas/PreemptKind"
+          },
+          "preemptNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "preemptCentracsNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PreemptKind": {
+        "enum": [
+          "None",
+          "Railroad",
+          "EmergencyVehicle",
+          "Other",
+          "Unsupported"
+        ],
+        "type": "string"
+      },
+      "RingStatus": {
+        "enum": [
+          "MinGreen",
+          "Extension",
+          "Maximum",
+          "GreenRest",
+          "YellowChange",
+          "RedClearance",
+          "RedRest",
+          "Undefined"
+        ],
+        "type": "string"
+      },
+      "RingStatusTermination": {
+        "enum": [
+          "Unknown",
+          "GapOut",
+          "MaxOut",
+          "ForceOff"
+        ],
+        "type": "string"
+      },
+      "SignalState": {
+        "enum": [
+          "Offline",
+          "CommFail",
+          "Standby",
+          "Flash",
+          "Preempt",
+          "Transition",
+          "Coordination",
+          "Free",
+          "AutomaticFlash"
+        ],
+        "type": "string"
+      },
+      "SignalStatusModel": {
+        "type": "object",
+        "properties": {
+          "signalId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "commStatus": {
+            "$ref": "#/components/schemas/CommStatus"
+          },
+          "commSuccessRate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "extendedSignalState": {
+            "$ref": "#/components/schemas/ExtSignalState"
+          },
+          "isInTransition": {
+            "type": "boolean"
+          },
+          "isCommsDead": {
+            "type": "boolean"
+          },
+          "localFreeStatus": {
+            "$ref": "#/components/schemas/LocalFreeStatus"
+          },
+          "unitFlashStatus": {
+            "$ref": "#/components/schemas/UnitFlashStatus"
+          },
+          "coordState": {
+            "$ref": "#/components/schemas/CoordState"
+          },
+          "preemptState": {
+            "$ref": "#/components/schemas/Preempt"
+          },
+          "signalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitControlMode": {
+            "type": "string",
+            "nullable": true
+          },
+          "coordPattern": {
+            "type": "string",
+            "nullable": true
+          },
+          "alarmCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "alarms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "phaseStatus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhaseStatusModel"
+            },
+            "nullable": true
+          },
+          "overlapStatus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OverlapStatusModel"
+            },
+            "nullable": true
+          },
+          "ringStatuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RingStatus"
+            },
+            "nullable": true
+          },
+          "ringStatusTerminations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RingStatusTermination"
+            },
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "systemClock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "localClock": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tspCallStatus": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TspCallStatus2"
+            },
+            "nullable": true
+          },
+          "notifications": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "signalStatusSource": {
+            "$ref": "#/components/schemas/SignalStatusSource"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SignalStatusSource": {
+        "enum": [
+          "Unknown",
+          "DirectPolling",
+          "SPaTMessage"
+        ],
+        "type": "string"
+      },
+      "TspCallStatus2": {
+        "enum": [
+          "EnabledIdle",
+          "CallFromInput",
+          "CallFromNTCIP",
+          "CallBeingServed",
+          "CallReserviced",
+          "CallInhibited",
+          "Disabled",
+          "ProgrammingError",
+          "EarlyExtendedGreen"
+        ],
+        "type": "string"
+      },
+      "UnitFlashStatus": {
+        "enum": [
+          "None",
+          "Other",
+          "NotFlash",
+          "Automatic",
+          "LocalManual",
+          "FaultMonitor",
+          "Mmu",
+          "Startup",
+          "Preempt"
+        ],
+        "type": "string"
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

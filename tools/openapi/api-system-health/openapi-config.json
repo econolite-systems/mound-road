@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-system-health/src/lib/emptyApiSystemHealth.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-system-health/src/lib/api-system-health.ts",
+  "exportName": "apiSystemHealth",
+  "hooks": true
+}
+

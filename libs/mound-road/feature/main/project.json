@@ -1,0 +1,27 @@
+{
+  "name": "mound-road-feature-main",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/feature/main/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mound-road/feature/main/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/mound-road/feature/main"],
+      "options": {
+        "jestConfig": "libs/mound-road/feature/main/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

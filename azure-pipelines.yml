@@ -1,0 +1,112 @@
+# SPDX-License-Identifier: MIT
+# Copyright: 2023 Econolite Systems, Inc.
+
+# CI build of the Mound Rd UI project  
+
+trigger:
+  branches:
+    include:
+      - main
+      - rc/*
+      - develop
+      - feature/*
+      - bugfix/*
+  paths:
+    exclude:
+      - docs
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: DevOps/templates
+      ref: refs/tags/1.2
+
+variables:
+  # versioning variables
+  - name: major_version
+    value: 1
+  - name: minor_version
+    value: 0
+
+    # Repo specific values
+  - name: imageRepository
+    value: "mound-rd-ui"
+  - name: dockerfilePath
+    value: "Dockerfile"
+
+    # Container registry service connection established during pipeline creation
+  - name: dockerRegistryServiceConnection
+    value: 'bf0a15b0-1048-4382-ad57-fbcd0cd84622'
+  - name: containerRegistry
+    value: 'cosysdev.azurecr.io'
+
+  # Folder for the built project to publish
+  - name: dist_location
+    value: ""
+
+stages:
+  # Versioning master branch builds
+  - template: buildversion.yml@templates # Template reference
+    parameters:
+      major: $(major_version)
+      minor: $(minor_version)
+
+  - stage: Build
+    jobs:
+      - job:
+        condition: succeeded()
+        steps:
+          - task: Npm@1
+            displayName: "npm install"
+            inputs:
+              verbose: true
+              customRegistry: useFeed
+              customFeed: "9ffc56ea-e79b-425f-8ee4-3b899f0c0d9d"
+          # - task: Npm@1
+          #   displayName: "npm lint ui"
+          #   condition: succeeded()
+          #   inputs:
+          #     command: custom
+          #     verbose: false
+          #     customCommand: "run lint"
+          # Version master and rc branches
+          - task: Npm@1
+            displayName: "npm version"
+            condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), startsWith(variables['Build.SourceBranch'], 'refs/heads/rc')))
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: "version $(Build.BuildNumber) --prefix./$(dist_location) --no-git-tag-version"
+          - task: Npm@1
+            displayName: "npm build"
+            condition: succeeded()
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: "run build"
+              customRegistry: useFeed
+              customFeed: "9ffc56ea-e79b-425f-8ee4-3b899f0c0d9d"
+          - task: Docker@2
+            displayName: Build docker
+            condition: succeeded()
+            inputs:
+              containerRegistry: "$(dockerRegistryServiceConnection)"
+              repository: "$(imageRepository)"
+              command: "build"
+              Dockerfile: "$(dockerfilePath)"
+              tags: "$(Build.BuildNumber)"
+          - task: Docker@2
+            displayName: Push docker image to Registry
+            condition: succeeded()
+            inputs:
+              containerRegistry: "Docker Container Registry"
+              repository: "$(imageRepository)"
+              command: "push"
+              tags: "$(Build.BuildNumber)"
+          - task: PublishPipelineArtifact@1
+            condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), startsWith(variables['Build.SourceBranch'], 'refs/heads/rc')))
+            displayName: "Publish helm charts to Pipeline Artifact"
+            inputs:
+              targetPath: "devops/helm-charts"
+              artifact: helm-charts

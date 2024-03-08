@@ -1,0 +1,37 @@
+{
+  "name": "shared-data-access-auth-state",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-access/auth-state/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/data-access/auth-state",
+        "main": "libs/shared/data-access/auth-state/src/index.ts",
+        "tsConfig": "libs/shared/data-access/auth-state/tsconfig.lib.json",
+        "assets": ["libs/shared/data-access/auth-state/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/data-access/auth-state/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/data-access/auth-state"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/data-access/auth-state/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
+

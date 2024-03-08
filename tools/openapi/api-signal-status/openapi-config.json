@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-signal-status/src/lib/emptyApiSignalStatus.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-signal-status/src/lib/api-signal-status.ts",
+  "exportName": "apiSignalStatus",
+  "hooks": true
+}
+

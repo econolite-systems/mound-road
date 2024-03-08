@@ -1,0 +1,20 @@
+/** Styles for the TriggerEventProperties component. */
+
+.trigger-event-properties {
+  transition: height 500ms;
+  overflow: hidden;
+  margin-left: -15px;
+  padding-left: 15px;
+
+  .comparator-input {
+    text-align: center;
+  }
+
+  .property-dropdown {
+    width: 100%;
+
+    .MuiFormHelperText-root {
+      display: none;
+    }
+  }
+}

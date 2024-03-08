@@ -1,0 +1,49 @@
+{
+  "name": "mound-road-data-access-global-state",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/data-access/global-state/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/mound-road/data-access/global-state",
+        "tsConfig": "libs/mound-road/data-access/global-state/tsconfig.lib.json",
+        "project": "libs/mound-road/data-access/global-state/package.json",
+        "entryFile": "libs/mound-road/data-access/global-state/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/mound-road/data-access/global-state/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mound-road/data-access/global-state/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/mound-road/data-access/global-state"
+      ],
+      "options": {
+        "jestConfig": "libs/mound-road/data-access/global-state/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

@@ -1,0 +1,6 @@
+moundRdUi:
+  name: mound-rd-ui
+  imageRepository: cosysdev.azurecr.io/mound-rd-ui
+  service:
+    port: 80
+  resources: {}

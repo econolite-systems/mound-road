@@ -1,0 +1,29 @@
+{
+  "name": "shared-react-twilio",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/twilio/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/react/twilio/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/shared/react/twilio"
+      ],
+      "options": {
+        "jestConfig": "libs/shared/react/twilio/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

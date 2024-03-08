@@ -1,0 +1,706 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api.Tim",
+    "version": "1.0"
+  },
+  "paths": {
+    "/tim": {
+      "get": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Get all tim documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim/itis-codes": {
+      "get": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Get all tim documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItisCodeType"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItisCodeType"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ItisCodeType"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim/status": {
+      "get": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Get all tim documents",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimStatus"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimStatus"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimStatus"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim/batch/{batchId}": {
+      "get": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Get batch of tim documents by batch id",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "Guid for the batch",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimDocument"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Submits a request to delete a batch of TIM messages",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The ID of a batch of TIM messages",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tim/send-request": {
+      "post": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Submits a request to publish a text TIM",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimRequest"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimRequest"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tim/cancel/{id}": {
+      "put": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Submits a request to cancel a TIM message",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of a TIM message",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tim/cancel/batch/{batchId}": {
+      "put": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Submits a request to cancel a batch of TIM messages",
+        "parameters": [
+          {
+            "name": "batchId",
+            "in": "path",
+            "description": "The ID of a batch of TIM messages",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/tim/{id}": {
+      "delete": {
+        "tags": [
+          "Tim"
+        ],
+        "summary": "Submits a request to delete a TIM message",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of a TIM message",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "enum": [
+          "Create",
+          "Update",
+          "Delete"
+        ],
+        "type": "string"
+      },
+      "DurationType": {
+        "enum": [
+          "None",
+          "Minutes",
+          "Hours",
+          "Days",
+          "Weeks"
+        ],
+        "type": "string"
+      },
+      "ItisCode": {
+        "enum": [
+          "None",
+          "StoppedTraffic",
+          "StopAndGoTraffic",
+          "SlowTraffic",
+          "LongQueues",
+          "SpeedLimit",
+          "Bumps",
+          "Pothole",
+          "VehicleTravelingWrongWay",
+          "SevereWeather",
+          "Blizzard",
+          "HeavySnow",
+          "Snow",
+          "WinterStorm",
+          "IceStorm",
+          "RainAndSnowMixed",
+          "DamagingHail",
+          "Thunderstorms",
+          "HeavyRain",
+          "Tornado",
+          "StrongWinds",
+          "StrongWindsHaveEased",
+          "Fog",
+          "VisibilityReduced",
+          "WhiteOut",
+          "VisibilityImproved",
+          "DangerOfHydroplaning",
+          "Ice",
+          "BlackIce",
+          "FreezingRain",
+          "SnowOnRoadway",
+          "PavementConditionsCleared",
+          "Watch",
+          "Warning",
+          "Alert",
+          "WarningCanceled",
+          "WatchCanceled",
+          "AlertCanceled"
+        ],
+        "type": "string"
+      },
+      "ItisCodeType": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "$ref": "#/components/schemas/ItisCode"
+          },
+          "fireOnce": {
+            "type": "boolean"
+          },
+          "messageTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "durationType": {
+            "$ref": "#/components/schemas/DurationType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MessageType": {
+        "enum": [
+          "Information",
+          "Alert",
+          "Warning",
+          "Watch"
+        ],
+        "type": "string"
+      },
+      "TargetType": {
+        "enum": [
+          "None",
+          "Downstream",
+          "Upstream",
+          "Radius",
+          "Target"
+        ],
+        "type": "string"
+      },
+      "TimDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "batchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "intersectionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rsuId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "state": {
+            "$ref": "#/components/schemas/TimState"
+          },
+          "source": {
+            "$ref": "#/components/schemas/TimSource"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "error": {
+            "type": "string",
+            "nullable": true
+          },
+          "action": {
+            "$ref": "#/components/schemas/Action"
+          },
+          "index": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "isAlternating": {
+            "type": "boolean"
+          },
+          "deliveryStart": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deliveryDuration": {
+            "$ref": "#/components/schemas/TimeSpan"
+          },
+          "enable": {
+            "type": "boolean"
+          },
+          "itisCode": {
+            "$ref": "#/components/schemas/ItisCode"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/MessageType"
+          },
+          "payload": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "cancelOnDuration": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "cancel": {
+            "type": "boolean"
+          },
+          "messageType": {
+            "$ref": "#/components/schemas/MessageType"
+          },
+          "itisCode": {
+            "$ref": "#/components/schemas/ItisCode"
+          },
+          "transmitMode": {
+            "$ref": "#/components/schemas/TimTransmitMode"
+          },
+          "durationType": {
+            "$ref": "#/components/schemas/DurationType"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "targetType": {
+            "$ref": "#/components/schemas/TargetType"
+          },
+          "target": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "nullable": true
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimSource": {
+        "enum": [
+          "LogicStatement",
+          "ManualEntry"
+        ],
+        "type": "string"
+      },
+      "TimState": {
+        "enum": [
+          "Pending",
+          "Canceling",
+          "Canceled",
+          "Running",
+          "Stopped",
+          "Error"
+        ],
+        "type": "string"
+      },
+      "TimStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "batchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "intersection": {
+            "type": "string",
+            "nullable": true
+          },
+          "rsu": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "deliveryTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimTransmitMode": {
+        "enum": [
+          "Continuous",
+          "Alternating"
+        ],
+        "type": "string"
+      },
+      "TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

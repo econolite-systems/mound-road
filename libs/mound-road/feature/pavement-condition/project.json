@@ -1,0 +1,29 @@
+{
+  "name": "mound-road-feature-pavement-condition",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mound-road/feature/pavement-condition/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mound-road/feature/pavement-condition/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/libs/mound-road/feature/pavement-condition"
+      ],
+      "options": {
+        "jestConfig": "libs/mound-road/feature/pavement-condition/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

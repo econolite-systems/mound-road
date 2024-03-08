@@ -1,0 +1,47 @@
+{
+  "name": "shared-data-access-map-state",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/data-access/map-state/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/data-access/map-state",
+        "tsConfig": "libs/shared/data-access/map-state/tsconfig.lib.json",
+        "project": "libs/shared/data-access/map-state/package.json",
+        "entryFile": "libs/shared/data-access/map-state/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/data-access/map-state/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/data-access/map-state/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/shared/data-access/map-state"],
+      "options": {
+        "jestConfig": "libs/shared/data-access/map-state/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

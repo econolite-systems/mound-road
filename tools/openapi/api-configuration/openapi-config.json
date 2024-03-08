@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-configuration/src/lib/emptyApiConfiguration.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-configuration/src/lib/api-configuration.ts",
+  "exportName": "apiConfiguration",
+  "hooks": true
+}
+

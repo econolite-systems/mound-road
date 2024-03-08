@@ -1,0 +1,9 @@
+{
+  "schemaFile": "./swagger.json",
+  "apiFile": "../../../libs/shared/data-access/api-tim/src/lib/emptyApiTim.ts",
+  "apiImport": "emptySplitApi",
+  "outputFile": "../../../libs/shared/data-access/api-tim/src/lib/api-tim.ts",
+  "exportName": "apiTim",
+  "hooks": true
+}
+

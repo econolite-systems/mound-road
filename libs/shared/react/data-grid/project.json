@@ -1,0 +1,45 @@
+{
+  "name": "shared-react-data-grid",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/react/data-grid/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/react/data-grid",
+        "tsConfig": "libs/shared/react/data-grid/tsconfig.lib.json",
+        "project": "libs/shared/react/data-grid/package.json",
+        "entryFile": "libs/shared/react/data-grid/src/index.ts",
+        "external": ["react/jsx-runtime"],
+        "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/shared/react/data-grid/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/shared/react/data-grid/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/shared/react/data-grid"],
+      "options": {
+        "jestConfig": "libs/shared/react/data-grid/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
+

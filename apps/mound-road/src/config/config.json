@@ -1,0 +1,76 @@
+{
+  "authSettings": {
+    "authority": "https://keycloak.cosysdev.com/realms/mobility",
+    "clientId": "web-ui",
+    "redirectUri": "http://localhost:4200/login-redirect.html",
+    "silentRedirectUri": "http://localhost:4200/silent-redirect.html",
+    "postLogoutRedirectUri": "http://localhost:4200/logout-redirect.html",
+    "responseType": "id_token token",
+    "scope": "openid email profile roles",
+    "automaticSilentRenew": true,
+    "loadUserInfo": true,
+    "autoSignIn": true
+  },
+  "authSettingsOld": {
+    "authority": "https://ident.cosysdev.com/",
+    "clientId": "spm",
+    "redirectUri": "http://localhost:4200/login-redirect.html",
+    "silentRedirectUri": "http://localhost:4200/silent-redirect.html",
+    "postLogoutRedirectUri": "http://localhost:4200/logout-redirect.html",
+    "responseType": "id_token token",
+    "scope": "openid profile",
+    "automaticSilentRenew": true,
+    "loadUserInfo": true
+  },
+  "fusionAuthSettings": {
+    "authority": "https://fusionauth.cosysdev.com/",
+    "clientId": "3fab5d3a-2937-4131-a929-c2b40d1476e5",
+    "clientSecret": "YcC4kJpadk3nyVK3OsuVoFGZ4xJ1VG2EN94Mu_kmsss",
+    "redirectUri": "http://localhost:4200/login-redirect.html",
+    "login": "/login",
+    "automaticSilentRenew": true,
+    "loadUserInfo": false,
+    "silentRedirectUri": "http://localhost:4200/silent-redirect.html",
+    "postLogoutRedirectUri": "http://localhost:4200/logout-redirect.html",
+    "responseType": "id_token token",
+    "clientScope": "openid spm profile"
+  },
+  "jasperReportSettings": {
+    "reportServerUrl": "https://reports.cosysdev.com",
+    "reportServerUsername": "reportReader",
+    "reportServerPassword": "4LMK1YtaE"
+  },
+  "applications": [
+    {
+      "name": "Mobility",
+      "url": "https://spm-dev.cosysdev.com/"
+    },
+    {
+      "name": "Role Management",
+      "url": "https://spm-dev.cosysdev.com/roles/"
+    },
+    {
+      "name": "CV ODE",
+      "url": "https://dev-ode.cosysdev.com/"
+    }
+  ],
+  "serviceSettings": {
+    "configService": "https://api-ode.cosysdev.com/config",
+    "reportsService": "https://api-ode.cosysdev.com/reports",
+    "timService": "https://api-ode.cosysdev.com/tim",
+    "vehiclePriorityService": "https://api-ode.cosysdev.com/vehicle-priority",
+    "systemHealthService": "https://api-ode.cosysdev.com/health",
+    "signalStatusService": "https://api-ode.cosysdev.com/status",
+    "speedStatusService": "https://api-ode.cosysdev.com/speed-status"
+  },
+  "serviceSettingsDev": {
+    "configService": "http://localhost:5138",
+    "reportsService": "http://localhost:5254",
+    "vehiclePriorityService": "https://localhost:7193",
+    "timService": "http://localhost:5187",
+    "systemHealthService": "http://localhost:5255",
+    "signalStatusService": "http://localhost:5121",
+    "speedStatusService": "http://localhost:5122"
+  }
+}
+

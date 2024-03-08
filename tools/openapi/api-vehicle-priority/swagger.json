@@ -1,0 +1,689 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Api.VehiclePriority",
+    "version": "1.0"
+  },
+  "paths": {
+    "/scp-vehicle-class": {
+      "get": {
+        "tags": [
+          "PriorityVehicleClass"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "PriorityVehicleClass"
+        ],
+        "summary": "",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequestVehicleConfiguration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scp/registerheartbeat": {
+      "put": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Should be called by a connected remote system at least once every 10 seconds so that system\r\ncomponents can be monitored as online or offline.",
+        "parameters": [
+          {
+            "name": "sourceId",
+            "in": "query",
+            "description": "Agreed upon system ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scp/requestpriority": {
+      "post": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Activate a priority request for a vehicle.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorityRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scp/cancelpriorityrequest": {
+      "put": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Cancel a currently active priority request.",
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "query",
+            "description": "ID of the request",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scp/updatevehicleposition": {
+      "put": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Update vehicle position.",
+        "parameters": [
+          {
+            "name": "vehicleid",
+            "in": "query",
+            "description": "The id.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "latitude",
+            "in": "query",
+            "description": "The lat.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "longitude",
+            "in": "query",
+            "description": "The lon.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "speedmph",
+            "in": "query",
+            "description": "The speed in mph.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "heading",
+            "in": "query",
+            "description": "The heading in degrees.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/scp/updatevehicle": {
+      "put": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Update the vehicle.",
+        "requestBody": {
+          "description": "The vehicle update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/scp/registerroute": {
+      "post": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Add a new route to the system.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scp/updateroute": {
+      "put": {
+        "tags": [
+          "VehiclePriority"
+        ],
+        "summary": "Reset an already registered route.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RouteUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "LatLongPair": {
+        "type": "object",
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequest": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleType": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "requestMetadata": {
+            "type": "string",
+            "nullable": true
+          },
+          "routeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "desiredClassLevel": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "allowed": {
+            "type": "boolean"
+          },
+          "startTime": {
+            "$ref": "#/components/schemas/ScheduleTime"
+          },
+          "endTime": {
+            "$ref": "#/components/schemas/ScheduleTime"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicleClassLevel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicleClassType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicleConfiguration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriorityRequestVehicle"
+            },
+            "nullable": true
+          },
+          "priorityRequestVehicleClassType": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriorityRequestVehicleClassType"
+            },
+            "nullable": true
+          },
+          "priorityRequestVehicleClassLevel": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriorityRequestVehicleClassLevel"
+            },
+            "nullable": true
+          },
+          "priorityRequestVehicleIntersections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriorityRequestVehicleIntersection"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicleIntersection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "disable": {
+            "type": "boolean"
+          },
+          "vehicles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PriorityRequestVehicleName"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PriorityRequestVehicleName": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "RouteUpdate": {
+        "type": "object",
+        "properties": {
+          "routeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "destinationLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "destinationLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitLocation": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitCity": {
+            "type": "string",
+            "nullable": true
+          },
+          "unitLatitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "unitLongitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "waypoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LatLongPair"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ScheduleTime": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minute": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "VehicleUpdate": {
+        "type": "object",
+        "properties": {
+          "vehicleId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleType": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "tag": {
+            "type": "string",
+            "nullable": true
+          },
+          "routeId": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleLatitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "vehicleLongitude": {
+            "type": "string",
+            "nullable": true
+          },
+          "travelDirection": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "travelSpeed": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+        "name": "Authorization",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ]
+}

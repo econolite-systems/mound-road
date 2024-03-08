@@ -1,0 +1,4 @@
+apiVersion: v1
+description: Mound Road UI
+name: "mound-rd-ui"
+version: 0.1.0
